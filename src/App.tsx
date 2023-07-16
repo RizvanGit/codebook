@@ -6,12 +6,12 @@ import { fetchPlugin } from "./plugins/fetch-plugin";
 
 const App: FC = () => {
   const [input, setInput] = useState("");
-  const [code, setCode] = useState("");
   const ref = useRef<any>();
+  const iframeRef = useRef<any>();
   const startService = async () => {
     ref.current = await esbuild.startService({
       worker: true,
-      wasmURL: "./esbuild.wasm",
+      wasmURL: "https://unpkg.com/esbuild-wasm@0.8.27/esbuild.wasm",
     });
   };
   useEffect(() => {
@@ -23,6 +23,8 @@ const App: FC = () => {
       return;
     }
 
+    iframeRef.current.srcdoc = html;
+
     const result = await ref.current.build({
       entryPoints: ["index.js"],
       bundle: true,
@@ -33,9 +35,33 @@ const App: FC = () => {
         global: "window",
       },
     });
-    console.log(result);
-    setCode(result.outputFiles[0].text);
+    //setCode(result.outputFiles[0].text);
+    iframeRef.current.contentWindow.postMessage(
+      result.outputFiles[0].text,
+      "*",
+    );
   };
+
+  const html = `
+    <html>
+      <head></head>
+      <body>
+        <div id="root"></div>
+        <script>
+          window.addEventListener("message", (event) => {
+                try{
+                  eval(event.data)
+                } catch(error){
+                  const root = document.getElementById('root')
+                  root.innerHTML = '<div style="color: red; font-weight: 500"><h4>Runtime error</h4>' + error + '</div>'
+                  console.error(error)
+                }
+              }, false)
+        </script>
+      </body>
+    </html>
+    `;
+
   return (
     <section>
       <div>
@@ -46,7 +72,12 @@ const App: FC = () => {
         <div>
           <button onClick={onClick}>Submit</button>
         </div>
-        <pre>{code}</pre>
+        <iframe
+          ref={iframeRef}
+          srcDoc={html}
+          title="codebox"
+          sandbox="allow-scripts"
+        />
       </div>
     </section>
   );
