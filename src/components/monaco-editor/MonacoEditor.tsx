@@ -3,6 +3,10 @@ import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
 import prettier from "prettier";
 import parserBabel from "prettier/parser-babel";
 import "./MonacoEditor.css";
+import "./syntax.css";
+import traverse from "@babel/traverse";
+import { parse } from "@babel/parser";
+import MonacoJSXHighlighter from "monaco-jsx-highlighter";
 
 type ICodeProps = {
   onChange(value: string): void;
@@ -11,13 +15,21 @@ type ICodeProps = {
 
 const CodeEditor: FC<ICodeProps> = ({ initValue, onChange }) => {
   const editorRef = useRef<any>();
-
   const onEditorDidMount: EditorDidMount = (getValue, monacoEditor) => {
     editorRef.current = monacoEditor;
     monacoEditor.onDidChangeModelContent(() => {
       onChange(getValue());
     });
     monacoEditor.getModel()?.updateOptions({ tabSize: 2 });
+    const highlightedText = new MonacoJSXHighlighter(
+      // @ts-ignore
+      window.monaco,
+      parse,
+      traverse,
+      monacoEditor
+    );
+    highlightedText.highlightOnDidChangeModelContent(100);
+    highlightedText.addJSXCommentCommand();
   };
   const onFormatCode = () => {
     const unformatted = editorRef.current.getModel().getValue();
@@ -31,6 +43,7 @@ const CodeEditor: FC<ICodeProps> = ({ initValue, onChange }) => {
         singleQuote: true,
       })
       .replace(/\n$/, "");
+
     editorRef.current.setValue(formatted);
   };
   return (
