@@ -3,6 +3,7 @@ import { FC, useState, useEffect, useRef } from "react";
 import "./App.css";
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 import { fetchPlugin } from "./plugins/fetch-plugin";
+import CodeEditor from "./components/monaco-editor/MonacoEditor";
 
 const App: FC = () => {
   const [input, setInput] = useState("");
@@ -65,6 +66,7 @@ const App: FC = () => {
   return (
     <section>
       <div>
+        <CodeEditor />
         <textarea
           onChange={(e) => setInput(e.target.value)}
           value={input}
