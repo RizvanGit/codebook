@@ -4,7 +4,7 @@ import "./App.css";
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 import { fetchPlugin } from "./plugins/fetch-plugin";
 import CodeEditor from "./components/monaco-editor/MonacoEditor";
-
+import "bulmaswatch/superhero/bulmaswatch.min.css";
 const App: FC = () => {
   const [input, setInput] = useState("");
   const ref = useRef<any>();

@@ -4,16 +4,6 @@
   padding: 0;
 }
 
-:root {
-  --main-bg-color: #333333;
-  --main-text-color: #ffffff;
-}
-
-body {
-  background: var(--main-bg-color);
-  color: var(--main-text-color);
-}
-
-iframe {
-  background: #dddddd;
+html {
+  overflow-y: auto !important;
 }
