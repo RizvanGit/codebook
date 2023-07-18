@@ -3,6 +3,7 @@ import { FC, useState, useEffect, useRef } from "react";
 import "./App.css";
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 import { fetchPlugin } from "./plugins/fetch-plugin";
+import { OnChange } from "@monaco-editor/react";
 import CodeEditor from "./components/monaco-editor/MonacoEditor";
 
 const App: FC = () => {
@@ -43,6 +44,11 @@ const App: FC = () => {
     );
   };
 
+  const editorChangeHandler: OnChange = (value = "") => {
+    setInput(value);
+    console.log("current editor's value: ", value);
+  };
+
   const html = `
     <html>
       <head></head>
@@ -66,7 +72,7 @@ const App: FC = () => {
   return (
     <section>
       <div>
-        <CodeEditor />
+        <CodeEditor initValue="const a = 1" onChange={editorChangeHandler} />
         <textarea
           onChange={(e) => setInput(e.target.value)}
           value={input}

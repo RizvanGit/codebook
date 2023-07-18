@@ -1,14 +1,16 @@
 import { FC } from "react";
-import MonacoEditor from "@monaco-editor/react";
+import { Editor, OnChange } from "@monaco-editor/react";
 
 type ICodeProps = {
-  onChange: (value: string) => void;
-  value: string;
+  onChange: OnChange;
+  initValue: string;
 };
 
-const CodeEditor: FC = () => {
+const CodeEditor: FC<ICodeProps> = ({ initValue, onChange }) => {
   return (
-    <MonacoEditor
+    <Editor
+      value={initValue}
+      onChange={onChange}
       height="200px"
       theme="vs-dark"
       defaultLanguage="javascript"
