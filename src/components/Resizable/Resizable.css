@@ -11,7 +11,7 @@
   cursor: row-resize;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
 }
-.react-draggable-transparent-selection iframe {
+.react-draggable-transparent-selection .preview-wrapper {
   pointer-events: none;
 }
 

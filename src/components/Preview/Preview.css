@@ -4,3 +4,17 @@
   height: 100%;
   overflow: hidden;
 }
+
+.preview-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  z-index: 30;
+  color: darkred;
+}
+.preview-error h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: darkred;
+}

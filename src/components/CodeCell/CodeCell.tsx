@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { startService as bundle } from "../../bundler";
 import CodeEditor from "../monaco-editor/MonacoEditor";
 import Resizable from "../Resizable/Resizable";
@@ -8,11 +8,17 @@ import styles from "./CodeCell.module.css";
 const CodeCell: FC = () => {
   const [input, setInput] = useState("");
   const [code, setCode] = useState("");
-
-  const onClick = async () => {
-    const output = await bundle(input);
-    setCode(output);
-  };
+  const [error, setError] = useState("");
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      const output = await bundle(input);
+      setCode(output.code);
+      setError(output.error);
+    }, 800);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [input]);
 
   return (
     <Resizable direction="vertical">
@@ -23,7 +29,7 @@ const CodeCell: FC = () => {
             onChange={(value) => setInput(value)}
           />
         </Resizable>
-        <Preview code={code} />
+        <Preview code={code} bundleStatus={error} />
       </section>
     </Resizable>
   );

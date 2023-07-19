@@ -3,6 +3,7 @@ import "./Preview.css";
 
 interface IPreviewProps {
   code: string;
+  bundleStatus: string;
 }
 
 const html = `
@@ -17,13 +18,20 @@ const html = `
       <body>
         <div id="root"></div>
         <script>
+          const handleError = (error) => {
+                  const root = document.querySelector('#root')
+                  root.innerHTML = '<div style="color: red; font-weight: 500"><h4>Runtime error</h4>' + error + '</div>'
+                  console.error('iframe error: ', error)
+          }
+          window.addEventListener('error', (event) => {
+                event.preventDefault();
+                handleError(event.error)
+              })
           window.addEventListener("message", (event) => {
                 try{
                   eval(event.data)
                 } catch(error){
-                  const root = document.getElementById('root')
-                  root.innerHTML = '<div style="color: red; font-weight: 500"><h4>Runtime error</h4>' + error + '</div>'
-                  console.error(error)
+                  handleError(error)
                 }
               }, false)
         </script>
@@ -31,13 +39,13 @@ const html = `
     </html>
     `;
 
-const Preview: FC<IPreviewProps> = ({ code }) => {
+const Preview: FC<IPreviewProps> = ({ code, bundleStatus }) => {
   const iframeRef = useRef<any>();
   useEffect(() => {
     iframeRef.current.srcdoc = html;
     setTimeout(() => {
       iframeRef.current.contentWindow.postMessage(code, "*");
-    }, 50);
+    }, 100);
   }, [code]);
   return (
     <div className="preview-wrapper">
@@ -47,6 +55,12 @@ const Preview: FC<IPreviewProps> = ({ code }) => {
         title="codebox"
         sandbox="allow-scripts"
       />
+      {bundleStatus && (
+        <div className="preview-error">
+          <h3>An error occurred!</h3>
+          {bundleStatus}
+        </div>
+      )}
     </div>
   );
 };
