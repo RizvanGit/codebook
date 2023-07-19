@@ -57,7 +57,7 @@ const CodeEditor: FC<ICodeProps> = ({ initValue, onChange }) => {
       <MonacoEditor
         value={initValue}
         editorDidMount={onEditorDidMount}
-        height="200px"
+        height="100%"
         theme="vs-dark"
         language="javascript"
         options={{
