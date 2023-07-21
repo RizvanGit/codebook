@@ -1,5 +1,11 @@
-import { ActionType } from "../action-types";
-import { ActionUnion } from "../actions";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import {
+  IDeleteCell,
+  IInsertCellBefore,
+  IMoveCell,
+  IUpdateCell,
+} from "../actions";
 import { ICell } from "../cell-type";
 
 interface ICellState {
@@ -18,32 +24,19 @@ const initialState: ICellState = {
   data: {},
 };
 
-const reducer = (
-  state: ICellState = initialState,
-  action: ActionUnion
-): ICellState => {
-  switch (action.type) {
-    case ActionType.MOVE_CELL:
-      return state;
-    case ActionType.UPDATE_CELL:
+const cellSlice = createSlice({
+  name: "cells",
+  initialState,
+  reducers: {
+    updateCell(state, action: PayloadAction<IUpdateCell>) {
       const { id, content } = action.payload;
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          [id]: {
-            ...state.data[id],
-            content,
-          },
-        },
-      };
-    case ActionType.INSERT_CELL_BEFORE:
-      return state;
-    case ActionType.DELETE_CELL:
-      return state;
-    default:
-      return state;
-  }
-};
+      state.data[id].content = content;
+    },
+    moveCell(state, action: PayloadAction<IMoveCell>) { },
+    insertCellBefore(state, action: PayloadAction<IInsertCellBefore>) { },
+    deleteCell(state, action: PayloadAction<IDeleteCell>) { },
+  },
+});
 
-export default reducer;
+export const cellReducer = cellSlice.reducer;
+export const cellActions = cellSlice.actions;
