@@ -1,11 +1,18 @@
 import { FC, useState, useEffect, useRef } from "react";
 import MDEditor from "@uiw/react-md-editor";
+import { cellActions } from "../../state/reducers/cellsReducer";
 import "./TextEditor.css";
+import { ICell } from "../../state";
+import { useAppDispatch } from "../../hooks/use-typed-dispatch";
 
-const TextEditor: FC = () => {
+interface ITextEditorProps {
+  cell: ICell;
+}
+const TextEditor: FC<ITextEditorProps> = ({ cell }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [value, setValue] = useState("# Header");
   const editorRef = useRef<HTMLElement | null>(null);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const listener = (event: MouseEvent) => {
@@ -24,17 +31,22 @@ const TextEditor: FC = () => {
       document.removeEventListener("click", listener, { capture: true });
     };
   }, []);
+
+  const onChangeTextEditor = (value: string | undefined) => {
+    dispatch(cellActions.updateCell({ id: cell.id, content: value || "" }));
+  };
+
   if (isEditing) {
     return (
       <section ref={editorRef} className="text-editor">
-        <MDEditor value={value} onChange={(v) => setValue(v || "")} />
+        <MDEditor value={cell.content} onChange={onChangeTextEditor} />
       </section>
     );
   }
   return (
     <section onClick={() => setIsEditing(true)} className="text-editor card">
       <div className="card-content">
-        <MDEditor.Markdown source={value} />
+        <MDEditor.Markdown source={cell.content || "Click to edit"} />
       </div>
     </section>
   );
