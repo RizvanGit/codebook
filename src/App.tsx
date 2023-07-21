@@ -3,14 +3,13 @@ import { Provider } from "react-redux";
 import { store } from "./state";
 import "./App.css";
 import "bulmaswatch/superhero/bulmaswatch.min.css";
-//import CodeCell from "./components/CodeCell/CodeCell";
-import TextEditor from "./components/TextEditor/TextEditor";
+import CellList from "./components/CellList/CellList";
 
 const App: FC = () => {
   return (
     <Provider store={store}>
       <section>
-        <TextEditor />
+        <CellList />
       </section>
     </Provider>
   );

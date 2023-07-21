@@ -1,14 +1,12 @@
 import { FC, useState, useEffect, useRef } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import "./TextEditor.css";
-import { useAppSelector } from "../../hooks/hooks";
 
 const TextEditor: FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState("# Header");
   const editorRef = useRef<HTMLElement | null>(null);
-  const cellState = useAppSelector((state) => state.cells);
-  console.log(cellState);
+
   useEffect(() => {
     const listener = (event: MouseEvent) => {
       if (
