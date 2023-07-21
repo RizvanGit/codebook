@@ -1,6 +1,10 @@
 import { CellTypes } from "../cell-type";
 
-export type DirectionType = "up" | "down";
+export enum DIRECTIONS {
+  UP = "up",
+  DOWN = "down",
+}
+export type DirectionType = DIRECTIONS;
 
 export interface IMoveCell {
   id: string;
@@ -10,7 +14,7 @@ export interface IMoveCell {
 export type IDeleteCell = string;
 
 export interface IInsertCellBefore {
-  id: string;
+  id: string | null;
   type: CellTypes;
 }
 
