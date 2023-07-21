@@ -4,6 +4,7 @@ import "./TextEditor.css";
 
 const TextEditor: FC = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const [value, setValue] = useState("# Header");
   const editorRef = useRef<HTMLElement | null>(null);
   useEffect(() => {
     const listener = (event: MouseEvent) => {
@@ -24,14 +25,16 @@ const TextEditor: FC = () => {
   }, []);
   if (isEditing) {
     return (
-      <section ref={editorRef}>
-        <MDEditor />
+      <section ref={editorRef} className="text-editor">
+        <MDEditor value={value} onChange={(v) => setValue(v || "")} />
       </section>
     );
   }
   return (
-    <section onClick={() => setIsEditing(true)}>
-      <MDEditor.Markdown source={"# Header"} />
+    <section onClick={() => setIsEditing(true)} className="text-editor card">
+      <div className="card-content">
+        <MDEditor.Markdown source={value} />
+      </div>
     </section>
   );
 };
