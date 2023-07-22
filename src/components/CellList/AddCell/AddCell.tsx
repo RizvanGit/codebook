@@ -5,12 +5,12 @@ import "./AddCell.css";
 import FAButton from "../../UI/Button/Button";
 
 interface IAddCellProps {
-  nextCellId: string | null;
+  previousCellId: string | null;
   forceVisible?: boolean;
 }
-const AddCell: FC<IAddCellProps> = ({ nextCellId, forceVisible }) => {
+const AddCell: FC<IAddCellProps> = ({ previousCellId, forceVisible }) => {
   const dispatch = useAppDispatch();
-  const { insertCellBefore } = cellActions;
+  const { insertCellAfter } = cellActions;
 
   return (
     <div className={`add-cell ${forceVisible && "force-visible"}`}>
@@ -18,7 +18,7 @@ const AddCell: FC<IAddCellProps> = ({ nextCellId, forceVisible }) => {
         <FAButton
           className="button is-rounded is-primary is-small"
           onClick={() =>
-            dispatch(insertCellBefore({ id: nextCellId, type: "code" }))
+            dispatch(insertCellAfter({ id: previousCellId, type: "code" }))
           }
           spanClass="icon is-small"
           iconClass="fas fa-plus"
@@ -28,7 +28,7 @@ const AddCell: FC<IAddCellProps> = ({ nextCellId, forceVisible }) => {
         <FAButton
           className="button is-rounded is-primary is-small"
           onClick={() =>
-            dispatch(insertCellBefore({ id: nextCellId, type: "text" }))
+            dispatch(insertCellAfter({ id: previousCellId, type: "text" }))
           }
           spanClass="icon is-small"
           iconClass="fas fa-plus"

@@ -3,7 +3,7 @@ import { setRandomId } from "../../utils/random-id";
 import {
   DIRECTIONS,
   IDeleteCell,
-  IInsertCellBefore,
+  IInsertCellAfter,
   IMoveCell,
   IUpdateCell,
 } from "../actions";
@@ -45,7 +45,7 @@ const cellSlice = createSlice({
       state.order[index] = state.order[targetIndex];
       state.order[targetIndex] = payloadId;
     },
-    insertCellBefore(state, action: PayloadAction<IInsertCellBefore>) {
+    insertCellAfter(state, action: PayloadAction<IInsertCellAfter>) {
       const { id: payloadId, type } = action.payload;
       const cell: ICell = {
         id: setRandomId(),
@@ -56,9 +56,9 @@ const cellSlice = createSlice({
 
       const index = state.order.findIndex((id) => id === payloadId);
       if (index < 0) {
-        state.order.push(cell.id);
+        state.order.unshift(cell.id);
       } else {
-        state.order.splice(index, 0, cell.id);
+        state.order.splice(index + 1, 0, cell.id);
       }
     },
     deleteCell(state, action: PayloadAction<IDeleteCell>) {

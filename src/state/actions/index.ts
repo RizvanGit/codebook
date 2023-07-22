@@ -13,7 +13,7 @@ export interface IMoveCell {
 
 export type IDeleteCell = string;
 
-export interface IInsertCellBefore {
+export interface IInsertCellAfter {
   id: string | null;
   type: CellTypes;
 }
@@ -26,5 +26,5 @@ export interface IUpdateCell {
 export type ActionUnion =
   | IMoveCell
   | IDeleteCell
-  | IInsertCellBefore
+  | IInsertCellAfter
   | IUpdateCell;
