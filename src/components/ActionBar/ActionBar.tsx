@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/use-typed-dispatch";
 import { cellActions } from "../../state/reducers/cellsReducer";
 import { DIRECTIONS } from "../../state/actions";
@@ -8,12 +8,21 @@ import "./ActionBar.css";
 interface IActionBarProps {
   id: string;
 }
+
 const ActionBar: FC<IActionBarProps> = ({ id }) => {
   const dispatch = useAppDispatch();
   const { moveCell, deleteCell } = cellActions;
-
+  const [classes, setClasses] = useState("action-bar wave");
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setClasses("action-bar");
+    }, 2000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
   return (
-    <div className="action-bar">
+    <div className={classes}>
       <FAButton
         onClick={() => dispatch(moveCell({ id, direction: DIRECTIONS.UP }))}
         className="button is-primary is-small"
