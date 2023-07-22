@@ -21,6 +21,9 @@ const FAButton: FC<IButtonProps> = ({
       <span className={spanClass}>
         <i className={iconClass}></i>
       </span>
+      {children ? (
+        <span style={{ fontSize: "0.8rem" }}> {children}</span>
+      ) : null}
     </button>
   );
 };

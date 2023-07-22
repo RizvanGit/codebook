@@ -32,14 +32,16 @@ const CodeCell: FC<ICodeCellProps> = ({ cell }) => {
   };
 
   return (
-    <Resizable direction="vertical">
-      <section className={styles.container}>
-        <Resizable direction="horizontal">
-          <CodeEditor initValue={cell.content} onChange={onChangeEditor} />
-        </Resizable>
-        <Preview code={code} bundleStatus={error} />
-      </section>
-    </Resizable>
+    <div>
+      <Resizable direction="vertical">
+        <section className={styles.container}>
+          <Resizable direction="horizontal">
+            <CodeEditor initValue={cell.content} onChange={onChangeEditor} />
+          </Resizable>
+          <Preview code={code} bundleStatus={error} />
+        </section>
+      </Resizable>
+    </div>
   );
 };
 

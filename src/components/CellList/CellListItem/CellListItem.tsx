@@ -18,7 +18,7 @@ const CellListItem: FC<ICellItemProps> = ({ cell }) => {
   return (
     <li className="cell-list-item">
       <ActionBar id={cell.id} />
-      <div>{child}</div>
+      <>{child}</>
     </li>
   );
 };
