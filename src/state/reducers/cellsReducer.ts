@@ -38,7 +38,7 @@ const cellSlice = createSlice({
       const index = state.order.findIndex((id) => id === payloadId);
       const targetIndex = direction === DIRECTIONS.UP ? index - 1 : index + 1;
 
-      if (targetIndex < 0 || targetIndex > state.order.length) {
+      if (targetIndex < 0 || targetIndex > state.order.length - 1) {
         return;
       }
 

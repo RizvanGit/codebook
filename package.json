@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/parser": "^7.22.7",
     "@babel/traverse": "^7.22.8",
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "@monaco-editor/react": "3.7.5",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",

@@ -17,3 +17,15 @@ store.dispatch(
     type: "text",
   })
 );
+store.dispatch(
+  cellActions.insertCellBefore({
+    id: null,
+    type: "code",
+  })
+);
+store.dispatch(
+  cellActions.insertCellBefore({
+    id: null,
+    type: "text",
+  })
+);
