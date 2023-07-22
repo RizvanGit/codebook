@@ -28,3 +28,15 @@ export type ActionUnion =
   | IDeleteCell
   | IInsertCellAfter
   | IUpdateCell;
+
+export interface IBundleStart {
+  cellId: string;
+}
+
+export interface IBundleCompele {
+  cellId: string;
+  bundle: {
+    code: string;
+    error: string;
+  };
+}

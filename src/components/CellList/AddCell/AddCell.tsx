@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { cellActions } from "../../../state/reducers/cellsReducer";
-import { useAppDispatch } from "../../../hooks/use-typed-dispatch";
+import { cellActions } from "../../../state";
+import { useAppDispatch } from "../../../hooks";
 import "./AddCell.css";
 import FAButton from "../../UI/Button/Button";
 

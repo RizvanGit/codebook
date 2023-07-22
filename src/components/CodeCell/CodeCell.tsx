@@ -1,12 +1,12 @@
 import { FC, useState, useEffect } from "react";
 import { startService as bundle } from "../../bundler";
+import { useAppDispatch } from "../../hooks";
+import { cellActions } from "../../state";
+import { ICell } from "../../state";
 import CodeEditor from "../monaco-editor/MonacoEditor";
 import Resizable from "../Resizable/Resizable";
 import Preview from "../Preview/Preview";
 import styles from "./CodeCell.module.css";
-import { ICell } from "../../state";
-import { useAppDispatch } from "../../hooks/use-typed-dispatch";
-import { cellActions } from "../../state/reducers/cellsReducer";
 
 interface ICodeCellProps {
   cell: ICell;

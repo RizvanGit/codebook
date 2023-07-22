@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
-import { useAppDispatch } from "../../hooks/use-typed-dispatch";
-import { cellActions } from "../../state/reducers/cellsReducer";
-import { DIRECTIONS } from "../../state/actions";
+import { useAppDispatch } from "../../hooks";
+import { cellActions } from "../../state";
+import { DIRECTIONS } from "../../state";
 import FAButton from "../UI/Button/Button";
 import "./ActionBar.css";
 

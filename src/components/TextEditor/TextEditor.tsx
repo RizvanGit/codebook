@@ -1,9 +1,9 @@
 import { FC, useState, useEffect, useRef } from "react";
 import MDEditor from "@uiw/react-md-editor";
-import { cellActions } from "../../state/reducers/cellsReducer";
-import "./TextEditor.css";
+import { useAppDispatch } from "../../hooks";
+import { cellActions } from "../../state";
 import { ICell } from "../../state";
-import { useAppDispatch } from "../../hooks/use-typed-dispatch";
+import "./TextEditor.css";
 
 interface ITextEditorProps {
   cell: ICell;

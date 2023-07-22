@@ -1,12 +1,12 @@
 import { FC, useRef } from "react";
 import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
-import prettier from "prettier";
+import MonacoJSXHighlighter from "monaco-jsx-highlighter";
 import parserBabel from "prettier/parser-babel";
-import "./MonacoEditor.css";
-import "./syntax.css";
+import prettier from "prettier";
 import traverse from "@babel/traverse";
 import { parse } from "@babel/parser";
-import MonacoJSXHighlighter from "monaco-jsx-highlighter";
+import "./MonacoEditor.css";
+import "./syntax.css";
 
 type ICodeProps = {
   onChange(value: string): void;

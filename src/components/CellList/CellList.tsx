@@ -1,5 +1,5 @@
 import { FC, Fragment } from "react";
-import { useAppSelector } from "../../hooks/use-typed-selector";
+import { useAppSelector } from "../../hooks";
 import CellListItem from "./CellListItem/CellListItem";
 import AddCell from "./AddCell/AddCell";
 
