@@ -33,7 +33,7 @@ export interface IBundleStart {
   cellId: string;
 }
 
-export interface IBundleCompele {
+export interface IBundle {
   cellId: string;
   bundle: {
     code: string;
