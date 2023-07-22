@@ -1,0 +1,55 @@
+.action-bar {
+  position: absolute;
+  top: 0;
+  right: -90px;
+  z-index: 40;
+  opacity: 0.7;
+  animation: wave 1.6s infinite linear;
+  transition: all 0.3s linear;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(3%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-3%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.action-bar:hover {
+  transition: top 0.3s ease-in, opacity 0.2s linear, right 0.3s ease-in;
+  top: 0;
+  right: 0;
+  opacity: 1;
+  animation: none;
+}
+
+.action-bar:hover.action-bar::before {
+  opacity: 0;
+}
+
+.action-bar::before {
+  content: "<";
+  font-weight: bold;
+  position: absolute;
+  top: 17%;
+  left: -10%;
+  transform: translateX(-50%);
+  background: orange;
+  color: white;
+  padding: 5px;
+  line-height: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  transition: all 0.1s ease-in;
+}
