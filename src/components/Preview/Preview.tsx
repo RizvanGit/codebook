@@ -9,11 +9,6 @@ interface IPreviewProps {
 const html = `
     <html>
       <head>
-       <style>
-       html {
-         background-color: #fdfcdc;
-       }
-       </style>
       </head>
       <body>
         <div id="root"></div>
@@ -40,15 +35,21 @@ const html = `
     `;
 
 const Preview: FC<IPreviewProps> = ({ code, bundleStatus }) => {
-  const iframeRef = useRef<any>();
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
   useEffect(() => {
+    if (!iframeRef.current) {
+      return;
+    }
     iframeRef.current.srcdoc = html;
     setTimeout(() => {
+      if (!iframeRef.current?.contentWindow) {
+        return;
+      }
       iframeRef.current.contentWindow.postMessage(code, "*");
-    }, 100);
+    }, 80);
   }, [code]);
   return (
-    <div className="preview-wrapper">
+    <>
       <iframe
         ref={iframeRef}
         srcDoc={html}
@@ -61,7 +62,7 @@ const Preview: FC<IPreviewProps> = ({ code, bundleStatus }) => {
           {bundleStatus}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

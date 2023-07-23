@@ -13,7 +13,7 @@ const AddCell: FC<IAddCellProps> = ({ previousCellId, forceVisible }) => {
   const { insertCellAfter } = cellActions;
 
   return (
-    <div className={`add-cell ${forceVisible && "force-visible"}`}>
+    <div className={`add-cell ${forceVisible ? "force-visible" : ""}`}>
       <div className="add-buttons">
         <FAButton
           className="button is-rounded is-primary is-small"

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import CodeCell from "../../CodeCell/CodeCell";
 import ActionBar from "../../ActionBar/ActionBar";
 import TextEditor from "../../TextEditor/TextEditor";
@@ -18,7 +18,7 @@ const CellListItem: FC<ICellItemProps> = ({ cell }) => {
   return (
     <li className="cell-list-item">
       <ActionBar id={cell.id} />
-      <>{child}</>
+      <Fragment>{child}</Fragment>
     </li>
   );
 };

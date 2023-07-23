@@ -5,7 +5,7 @@ import { ICell } from "../../state";
 import CodeEditor from "../monaco-editor/MonacoEditor";
 import Resizable from "../Resizable/Resizable";
 import Preview from "../Preview/Preview";
-import styles from "./CodeCell.module.css";
+import "./CodeCell.css";
 
 interface ICodeCellProps {
   cell: ICell;
@@ -32,16 +32,26 @@ const CodeCell: FC<ICodeCellProps> = ({ cell }) => {
   };
 
   return (
-    <div>
+    <>
       <Resizable direction="vertical">
-        <section className={styles.container}>
+        <section className="code-section">
           <Resizable direction="horizontal">
             <CodeEditor initValue={cell.content} onChange={onChangeEditor} />
           </Resizable>
-          {bundle && <Preview code={bundle.code} bundleStatus={bundle.error} />}
+          <div className="previewWrapper">
+            {!isBundle || bundle.loading ? (
+              <div className="progressCover">
+                <progress className="progress is-small is-primary" max="100">
+                  Loading
+                </progress>
+              </div>
+            ) : (
+              <Preview code={bundle.code} bundleStatus={bundle.error} />
+            )}
+          </div>
         </section>
       </Resizable>
-    </div>
+    </>
   );
 };
 
