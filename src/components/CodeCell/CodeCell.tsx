@@ -13,15 +13,19 @@ interface ICodeCellProps {
 const CodeCell: FC<ICodeCellProps> = ({ cell }) => {
   const dispatch = useAppDispatch();
   const bundle = useAppSelector((state) => state.bundle[cell.id]);
-  console.log(bundle);
+  const isBundle = !!bundle;
   useEffect(() => {
+    if (!isBundle) {
+      dispatch(bundleCode({ cellId: cell.id, code: cell.content }));
+      return;
+    }
     const timer = setTimeout(async () => {
       dispatch(bundleCode({ cellId: cell.id, code: cell.content }));
     }, 800);
     return () => {
       clearTimeout(timer);
     };
-  }, [cell.content, cell.id, dispatch]);
+  }, [cell.content, cell.id, dispatch, isBundle]);
 
   const onChangeEditor = (value: string) => {
     dispatch(cellActions.updateCell({ id: cell.id, content: value }));

@@ -10,6 +10,7 @@ html {
 
 iframe {
   display: block;
+  background: #fdfcdc;
   width: 100%;
   height: 100%;
 }
