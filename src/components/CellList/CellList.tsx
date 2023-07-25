@@ -14,10 +14,10 @@ const CellList: FC = () => {
     </Fragment>
   ));
   return (
-    <ul>
+    <ol>
       <AddCell previousCellId={null} forceVisible={cells.length === 0} />
       {renderedCells}
-    </ul>
+    </ol>
   );
 };
 

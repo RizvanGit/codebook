@@ -13,14 +13,34 @@ interface ICodeCellProps {
 const CodeCell: FC<ICodeCellProps> = ({ cell }) => {
   const dispatch = useAppDispatch();
   const bundle = useAppSelector((state) => state.bundle[cell.id]);
+  const allCellsUpToTheCurrent = useAppSelector((state) => {
+    const { data, order } = state.cells;
+    const orderedCells = order.map((id) => data[id]);
+
+    const combinedCode = [];
+    for (let code of orderedCells) {
+      if (code.type === "code") {
+        combinedCode.push(code.content);
+      }
+      if (code.type === cell.id) {
+        break;
+      }
+    }
+    return combinedCode;
+  });
+  console.log(allCellsUpToTheCurrent);
   const isBundle = !!bundle;
   useEffect(() => {
     if (!isBundle) {
-      dispatch(bundleCode({ cellId: cell.id, code: cell.content }));
+      dispatch(
+        bundleCode({ cellId: cell.id, code: allCellsUpToTheCurrent.join("\n") })
+      );
       return;
     }
     const timer = setTimeout(async () => {
-      dispatch(bundleCode({ cellId: cell.id, code: cell.content }));
+      dispatch(
+        bundleCode({ cellId: cell.id, code: allCellsUpToTheCurrent.join("\n") })
+      );
     }, 800);
     return () => {
       clearTimeout(timer);

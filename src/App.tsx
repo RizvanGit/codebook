@@ -1,17 +1,17 @@
 import { FC } from "react";
 import { Provider } from "react-redux";
 import { store } from "./state";
-import "./App.css";
+import CellList from "./components/CellList/CellList";
 import "bulmaswatch/superhero/bulmaswatch.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import CellList from "./components/CellList/CellList";
+import "./App.css";
 
 const App: FC = () => {
   return (
     <Provider store={store}>
-      <section>
+      <article>
         <CellList />
-      </section>
+      </article>
     </Provider>
   );
 };
