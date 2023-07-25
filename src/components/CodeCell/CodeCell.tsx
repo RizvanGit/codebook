@@ -26,26 +26,21 @@ const CodeCell: FC<ICodeCellProps> = ({ cell }) => {
         break;
       }
     }
-    return combinedCode;
+    return combinedCode.join("\n");
   });
-  console.log(allCellsUpToTheCurrent);
   const isBundle = !!bundle;
   useEffect(() => {
     if (!isBundle) {
-      dispatch(
-        bundleCode({ cellId: cell.id, code: allCellsUpToTheCurrent.join("\n") })
-      );
+      dispatch(bundleCode({ cellId: cell.id, code: allCellsUpToTheCurrent }));
       return;
     }
     const timer = setTimeout(async () => {
-      dispatch(
-        bundleCode({ cellId: cell.id, code: allCellsUpToTheCurrent.join("\n") })
-      );
+      dispatch(bundleCode({ cellId: cell.id, code: allCellsUpToTheCurrent }));
     }, 800);
     return () => {
       clearTimeout(timer);
     };
-  }, [cell.content, cell.id, dispatch, isBundle]);
+  }, [cell.content, cell.id, dispatch, isBundle, allCellsUpToTheCurrent]);
 
   const onChangeEditor = (value: string) => {
     dispatch(cellActions.updateCell({ id: cell.id, content: value }));
