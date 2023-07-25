@@ -3,6 +3,8 @@
   background-color: #37414b;
   background-repeat: no-repeat;
   background-position: 50%;
+  position: relative;
+  z-index: 50;
 }
 
 .react-resizable-handle-s {
@@ -11,7 +13,7 @@
   cursor: row-resize;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
 }
-.react-draggable-transparent-selection .preview-wrapper {
+.react-draggable-transparent-selection .code-section {
   pointer-events: none;
 }
 

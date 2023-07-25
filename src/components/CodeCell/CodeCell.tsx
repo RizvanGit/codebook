@@ -15,14 +15,14 @@ const CodeCell: FC<ICodeCellProps> = ({ cell }) => {
   const bundle = useAppSelector((state) => state.bundle[cell.id]);
   const allCellsUpToTheCurrent = useAppSelector((state) => {
     const { data, order } = state.cells;
-    const orderedCells = order.map((id) => data[id]);
 
+    const orderedCells = order.map((id) => data[id]);
     const combinedCode = [];
     for (let code of orderedCells) {
       if (code.type === "code") {
         combinedCode.push(code.content);
       }
-      if (code.type === cell.id) {
+      if (code.id === cell.id) {
         break;
       }
     }

@@ -1,23 +1,30 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, memo, useMemo } from "react";
 import { useAppSelector } from "../../hooks";
 import CellListItem from "./CellListItem/CellListItem";
 import AddCell from "./AddCell/AddCell";
+import { ICell } from "../../state";
 
+const MemoListItem: FC<{ cell: ICell }> = memo(({ cell }) => {
+  const cellMemo = useMemo(() => cell, [cell]);
+  return (
+    <Fragment key={cell.id}>
+      <CellListItem cell={cellMemo} />
+      <AddCell previousCellId={cell.id} />
+    </Fragment>
+  );
+});
 const CellList: FC = () => {
   const cellState = useAppSelector((state) => state.cells);
   const cells = cellState.order.map((id) => cellState.data[id]);
-
-  const renderedCells = cells.map((cell) => (
-    <Fragment key={cell.id}>
-      <CellListItem cell={cell} />
-      <AddCell previousCellId={cell.id} />
-    </Fragment>
-  ));
+  const cellsMemo = useMemo(() => cells, [cells]);
+  const renderedCells = cellsMemo.map((cell) => {
+    return <MemoListItem cell={cell} key={cell.id} />;
+  });
   return (
-    <ol>
+    <ul>
       <AddCell previousCellId={null} forceVisible={cells.length === 0} />
       {renderedCells}
-    </ol>
+    </ul>
   );
 };
 
