@@ -4,7 +4,6 @@
   right: -90px;
   z-index: 40;
   opacity: 0.7;
-  transition: all 0.3s linear;
 }
 .wave {
   animation: wave 1s 1 linear;

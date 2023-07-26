@@ -51,7 +51,7 @@ const Resizable: FC<IResizableProps> = ({ children, direction }) => {
       width: Infinity,
       height: 250,
       resizeHandles: ["s"],
-      maxConstraints: [Infinity, Math.trunc(height * 0.9)],
+      maxConstraints: [Infinity, Math.trunc(height * 1.3)],
       minConstraints: [Infinity, 24],
     };
   }

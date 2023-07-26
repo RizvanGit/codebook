@@ -3,6 +3,7 @@ import { useAppSelector } from "../../hooks";
 import CellListItem from "./CellListItem/CellListItem";
 import AddCell from "./AddCell/AddCell";
 import { ICell } from "../../state";
+import "./CellList.css";
 
 const MemoListItem: FC<{ cell: ICell }> = memo(({ cell }) => {
   const cellMemo = useMemo(() => cell, [cell]);
@@ -21,7 +22,7 @@ const CellList: FC = () => {
     return <MemoListItem cell={cell} key={cell.id} />;
   });
   return (
-    <ul>
+    <ul className="cell-list">
       <AddCell previousCellId={null} forceVisible={cells.length === 0} />
       {renderedCells}
     </ul>
