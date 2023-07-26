@@ -6,6 +6,7 @@ import CodeEditor from "../monaco-editor/MonacoEditor";
 import Resizable from "../Resizable/Resizable";
 import Preview from "../Preview/Preview";
 import "./CodeCell.css";
+import { useCombinedCode } from "../../hooks/useCombinedCode";
 
 interface ICodeCellProps {
   cell: ICell;
@@ -13,21 +14,7 @@ interface ICodeCellProps {
 const CodeCell: FC<ICodeCellProps> = ({ cell }) => {
   const dispatch = useAppDispatch();
   const bundle = useAppSelector((state) => state.bundle[cell.id]);
-  const allCellsUpToTheCurrent = useAppSelector((state) => {
-    const { data, order } = state.cells;
-
-    const orderedCells = order.map((id) => data[id]);
-    const combinedCode = [];
-    for (let code of orderedCells) {
-      if (code.type === "code") {
-        combinedCode.push(code.content);
-      }
-      if (code.id === cell.id) {
-        break;
-      }
-    }
-    return combinedCode.join("\n");
-  });
+  const allCellsUpToTheCurrent = useCombinedCode(cell.id);
   const isBundle = !!bundle;
   useEffect(() => {
     if (!isBundle) {
