@@ -1,4 +1,4 @@
-import { useAppSelector } from "./use-typed-selector";
+import { useAppSelector } from "./useTypedSelector";
 
 export const useCombinedCode = (cellId: string) => {
   return useAppSelector((state) => {

@@ -1,12 +1,11 @@
 import { FC, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector, useCombinedCode } from "../../hooks";
 import { bundleCode, cellActions } from "../../state";
 import { ICell } from "../../state";
 import CodeEditor from "../monaco-editor/MonacoEditor";
 import Resizable from "../Resizable/Resizable";
 import Preview from "../Preview/Preview";
 import "./CodeCell.css";
-import { useCombinedCode } from "../../hooks/useCombinedCode";
 
 interface ICodeCellProps {
   cell: ICell;

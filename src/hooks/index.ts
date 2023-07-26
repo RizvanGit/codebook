@@ -1,2 +1,3 @@
-export * from "./use-typed-dispatch";
-export * from "./use-typed-selector";
+export * from "./useTypedDispatch";
+export * from "./useTypedSelector";
+export * from "./useCombinedCode";

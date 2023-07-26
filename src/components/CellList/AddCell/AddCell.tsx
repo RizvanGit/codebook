@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { cellActions } from "../../../state";
 import { useAppDispatch } from "../../../hooks";
-import "./AddCell.css";
 import FAButton from "../../UI/Button/Button";
+import "./AddCell.css";
 
 interface IAddCellProps {
   previousCellId: string | null;

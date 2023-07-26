@@ -1,8 +1,7 @@
 import { FC, useState, useEffect, useRef } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { useAppDispatch } from "../../hooks";
-import { cellActions } from "../../state";
-import { ICell } from "../../state";
+import { cellActions, ICell } from "../../state";
 import "./TextEditor.css";
 
 interface ITextEditorProps {
