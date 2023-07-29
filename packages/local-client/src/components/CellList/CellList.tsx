@@ -1,5 +1,6 @@
-import { FC, Fragment, memo, useMemo } from "react";
-import { useAppSelector } from "../../hooks";
+import { FC, Fragment, memo, useMemo, useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "../../hooks";
+import { fetchCells } from "../../state/action-creators";
 import CellListItem from "./CellListItem/CellListItem";
 import AddCell from "./AddCell/AddCell";
 import { ICell } from "../../state";
@@ -17,6 +18,11 @@ const MemoListItem: FC<{ cell: ICell }> = memo(({ cell }) => {
 const CellList: FC = () => {
   const cellState = useAppSelector((state) => state.cells);
   const cells = cellState.order.map((id) => cellState.data[id]);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCells());
+  }, [dispatch]);
   const cellsMemo = useMemo(() => cells, [cells]);
   const renderedCells = cellsMemo.map((cell) => {
     return <MemoListItem cell={cell} key={cell.id} />;

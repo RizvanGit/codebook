@@ -25,8 +25,8 @@ export const fetchCells = createAsyncThunk("code/fetch", async () => {
     error: "",
   };
   try {
-    result.data = await axios.get("/cells");
-
+    const response = await axios.get("/cells");
+    result.data = response.data;
     return result;
   } catch (error) {
     if (error instanceof Error) {
