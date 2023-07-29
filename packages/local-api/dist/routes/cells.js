@@ -12,8 +12,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createCellsRouter = void 0;
 /* eslint-disable */
 const express_1 = __importDefault(require("express"));
-const router = express_1.default.Router();
-router.get("/cells", () => __awaiter(void 0, void 0, void 0, function* () { }));
-router.post("/cells", () => __awaiter(void 0, void 0, void 0, function* () { }));
+const promises_1 = __importDefault(require("fs/promises"));
+const path_1 = __importDefault(require("path"));
+const createCellsRouter = (filename, dir) => {
+    const router = express_1.default.Router();
+    const fullPath = path_1.default.join(dir, filename);
+    router.get("/cells", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+        const isLocalApiError = (error) => {
+            return typeof error.code === "string";
+        };
+        try {
+            const result = yield promises_1.default.readFile(fullPath, { encoding: "utf-8" });
+            response.send(JSON.parse(result));
+        }
+        catch (error) {
+            if (isLocalApiError(error)) {
+                if (error.code === "ENOENT") {
+                    yield promises_1.default.writeFile(fullPath, "[]", "utf-8");
+                    response.send([]);
+                }
+            }
+            else {
+                throw error;
+            }
+        }
+    }));
+    router.post("/cells", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+        const { cells } = request.body;
+        yield promises_1.default.writeFile(fullPath, JSON.stringify(cells), "utf-8");
+        response.send({ status: "ok" });
+    }));
+    return router;
+};
+exports.createCellsRouter = createCellsRouter;
