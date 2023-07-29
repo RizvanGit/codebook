@@ -1,7 +1,13 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  ActionReducerMapBuilder,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { setRandomId } from "../../utils/random-id";
+import { fetchCells, saveCells } from "../action-creators";
 import {
   DIRECTIONS,
+  FetchResponseType,
   IDeleteCell,
   IInsertCellAfter,
   IMoveCell,
@@ -65,6 +71,29 @@ const cellSlice = createSlice({
       delete state.data[action.payload];
       state.order = state.order.filter((id) => id !== action.payload);
     },
+  },
+  extraReducers: (builder: ActionReducerMapBuilder<ICellState>) => {
+    builder
+      .addCase(fetchCells.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(fetchCells.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        if (payload) {
+          state.order = payload.data.map((cell) => cell.id);
+          state.data = payload.data.reduce((acc, cell) => {
+            acc[cell.id] = cell;
+            return acc;
+          }, {} as ICellState["data"]);
+          state.error = payload.error;
+        }
+      });
+    builder.addCase(saveCells.rejected, (state, action) => {
+      if (action.error.message) {
+        state.error = action.error.message;
+      }
+    });
   },
 });
 

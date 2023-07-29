@@ -1,4 +1,4 @@
-import { CellTypes } from "../cell-type";
+import { CellTypes, ICell } from "../cell-type";
 
 export enum DIRECTIONS {
   UP = "up",
@@ -40,3 +40,5 @@ export interface IBundle {
     error: string;
   };
 }
+
+export type FetchResponseType = { data: ICell[]; error: string };
