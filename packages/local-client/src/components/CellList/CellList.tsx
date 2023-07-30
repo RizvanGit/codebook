@@ -23,6 +23,7 @@ const CellList: FC = () => {
   useEffect(() => {
     dispatch(fetchCells());
   }, [dispatch]);
+
   const cellsMemo = useMemo(() => cells, [cells]);
   const renderedCells = cellsMemo.map((cell) => {
     return <MemoListItem cell={cell} key={cell.id} />;

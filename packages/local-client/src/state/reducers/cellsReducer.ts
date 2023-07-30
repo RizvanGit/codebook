@@ -7,7 +7,6 @@ import { setRandomId } from "../../utils/random-id";
 import { fetchCells, saveCells } from "../action-creators";
 import {
   DIRECTIONS,
-  FetchResponseType,
   IDeleteCell,
   IInsertCellAfter,
   IMoveCell,
@@ -89,11 +88,19 @@ const cellSlice = createSlice({
           state.error = payload.error;
         }
       });
-    builder.addCase(saveCells.rejected, (state, action) => {
-      if (action.error.message) {
-        state.error = action.error.message;
-      }
-    });
+    builder
+      .addCase(saveCells.rejected, (state, action) => {
+        state.loading = false;
+        if (action.error.message) {
+          state.error = action.error.message;
+        }
+      })
+      .addCase(saveCells.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(saveCells.fulfilled, (state, action) => {
+        state.loading = false;
+      });
   },
 });
 

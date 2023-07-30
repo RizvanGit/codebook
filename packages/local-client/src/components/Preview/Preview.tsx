@@ -9,10 +9,18 @@ interface IPreviewProps {
 const html = `
     <html>
       <head>
+      <style>
+       body {
+         margin: 0;
+         padding: 0;
+         height: 100%;
+       }
+      </style>
       </head>
       <body>
         <div id="root"></div>
         <script>
+          const root = document.querySelector('#root')
           const handleError = (error) => {
                   const root = document.querySelector('#root')
                   root.innerHTML = '<div style="color: red; font-weight: 500"><h4>Runtime error</h4>' + error + '</div>'
@@ -29,6 +37,8 @@ const html = `
                   handleError(error)
                 }
               }, false)
+          const isEmpty = root.childNodes.length === 0
+          console.log('is root Empty: ', root)
         </script>
       </body>
     </html>
@@ -36,6 +46,7 @@ const html = `
 
 const Preview: FC<IPreviewProps> = ({ code, bundleStatus }) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  console.log("FRAMEREF IN PREVIEW: ", iframeRef.current?.srcdoc);
   useEffect(() => {
     if (!iframeRef.current) {
       return;

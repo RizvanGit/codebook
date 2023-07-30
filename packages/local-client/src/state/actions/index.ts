@@ -23,12 +23,6 @@ export interface IUpdateCell {
   content: string;
 }
 
-export type ActionUnion =
-  | IMoveCell
-  | IDeleteCell
-  | IInsertCellAfter
-  | IUpdateCell;
-
 export interface IBundleStart {
   cellId: string;
 }
