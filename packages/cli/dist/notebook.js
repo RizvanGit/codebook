@@ -1,1 +1,1 @@
-[{"id":"cfgotabg","type":"code","content":"const a = 11\r\nrender(112312321131)"},{"id":"sdu9z2jf","type":"text","content":""}]
+[{"id":"cfgotabg","type":"code","content":""},{"id":"sdu9z2jf","type":"text","content":""},{"id":"1o28a2yn","type":"code","content":"r"}]

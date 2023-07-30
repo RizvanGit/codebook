@@ -16,3 +16,18 @@
 .editor-wrapper:hover .button-format {
   opacity: 1;
 }
+
+.show-info {
+  position: relative;
+}
+.show-info::after {
+  position: absolute;
+  content: "Call function: render(argument), to display content";
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  font-style: italic;
+  text-align: center;
+  opacity: 0.7;
+}

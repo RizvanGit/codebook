@@ -37,8 +37,6 @@ const html = `
                   handleError(error)
                 }
               }, false)
-          const isEmpty = root.childNodes.length === 0
-          console.log('is root Empty: ', root)
         </script>
       </body>
     </html>
@@ -46,7 +44,6 @@ const html = `
 
 const Preview: FC<IPreviewProps> = ({ code, bundleStatus }) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
-  console.log("FRAMEREF IN PREVIEW: ", iframeRef.current?.srcdoc);
   useEffect(() => {
     if (!iframeRef.current) {
       return;

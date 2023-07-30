@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { FC, useRef, useEffect } from "react";
 import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
 import MonacoJSXHighlighter from "monaco-jsx-highlighter";
 import parserBabel from "prettier/parser-babel";
@@ -54,8 +54,12 @@ const CodeEditor: FC<ICodeProps> = ({ initValue, onChange }) => {
       }
     }
   };
+  let isEmptyValue = initValue === "";
+  let editorClasses = isEmptyValue
+    ? "editor-wrapper show-info"
+    : "editor-wrapper";
   return (
-    <div className="editor-wrapper">
+    <div className={editorClasses}>
       <button
         className="button button-format is-primary is-small"
         onClick={onFormatCode}
