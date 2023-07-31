@@ -1,6 +1,6 @@
 {
   "name": "cnbook",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "cnbook is a code & text editor",
   "bin": "dist/index.js",
   "publishConfig": {
@@ -13,8 +13,11 @@
     "start": "tsc --watch --preserveWatchOutput",
     "prepublishOnly": "esbuild src/index.ts --platform=node --outfile=dist/index.js --bundle --minify --define:process.env.NODE_ENV=\"'production'\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "codeeditor",
+    "texteditor"
+  ],
+  "author": "Rizvan",
   "license": "ISC",
   "dependencies": {
     "@cnbook/local-client": "^1.0.3"
