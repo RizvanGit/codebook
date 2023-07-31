@@ -1,46 +1,19 @@
-# Getting Started with Create React App
+<h1>cnbook - code and text editor</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<h2>Description</h2>
+<p>This is an interactive coding application. You can write Javascript, see it executed, and write comprehensive documentation useing markdow</p>
+<p>You can write React code and import any available packages. Example: <code>import axios from 'axios</code></p>
+<ul>
+  <li>You can add two types of cells: code cell and text cell<i>(click to edit)</i>.</li>
+  <li>The code in each code editor is all joined into one file. A variable defined in a code cell is available in any following code cell</li>
+  <li>You can show any React component, string, number, etc. by calling <code>render()</code> function. This function is pre-built into this encironment</li>
+  <li>Re-order or delete cells using the buttons on the top right of a cell</li>
+  <li>Add new cells by hovering on the divider between each cell</li>
+</ul>
+<p>All of you changes get saved to the file you opened cnbook with</p>
+<h2>Download</h2>
+<p>You can install cnbook by running: <code>npx cnbook serve</code> in your terminal</p>
+<ul>Available commands:
+  <li>You can specify file which will include your saved code: <code>npx cnbook serve name.js</code></li>
+  <li>Run app on any port: <code>npx cnbook serve --port 4010</code></li>
+</ul>
