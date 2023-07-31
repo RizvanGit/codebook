@@ -20,10 +20,10 @@
     "@cnbook/local-client": "^1.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.4.5",
-    "esbuild": "0.8.25",
-    "typescript": "^5.1.6",
     "@cnbook/local-api": "^1.0.0",
-    "commander": "^11.0.0"
+    "@types/node": "^20.4.5",
+    "commander": "^11.0.0",
+    "esbuild": "0.8.25",
+    "typescript": "^5.1.6"
   }
 }
