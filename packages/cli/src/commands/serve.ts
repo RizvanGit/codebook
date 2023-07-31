@@ -1,4 +1,3 @@
-/* eslint-disable */
 import path from "path";
 import { Command } from "commander";
 import { serve } from "@cnbook/local-api";
