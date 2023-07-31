@@ -26,7 +26,7 @@
     "@cnbook/local-api": "^1.0.4",
     "@types/node": "^20.4.5",
     "commander": "^11.0.0",
-    "esbuild": "0.8.25",
+    "esbuild": "0.8.26",
     "typescript": "^5.1.6"
   },
   "gitHead": "36f5b728d4eea0e845716677eef5d94a3346d396"
