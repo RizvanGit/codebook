@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cnbook/local-client": "^1.0.1"
+    "@cnbook/local-client": "^1.0.2"
   },
   "devDependencies": {
     "@cnbook/local-api": "^1.0.1",
