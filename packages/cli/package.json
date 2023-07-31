@@ -17,10 +17,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cnbook/local-client": "^1.0.0"
+    "@cnbook/local-client": "^1.0.1"
   },
   "devDependencies": {
-    "@cnbook/local-api": "^1.0.0",
+    "@cnbook/local-api": "^1.0.1",
     "@types/node": "^20.4.5",
     "commander": "^11.0.0",
     "esbuild": "0.8.25",
