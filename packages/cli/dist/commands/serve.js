@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.serveCommand = void 0;
-/* eslint-disable */
 const path_1 = __importDefault(require("path"));
 const commander_1 = require("commander");
 const local_api_1 = require("@cnbook/local-api");

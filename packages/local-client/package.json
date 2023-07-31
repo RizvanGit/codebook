@@ -1,6 +1,6 @@
 {
   "name": "@cnbook/local-client",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "files": [
     "build"
   ],
@@ -46,7 +46,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-scripts build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
@@ -67,5 +67,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "gitHead": "2a097664a4ea4fe6f9c2ff2de486885baaf24647"
 }
