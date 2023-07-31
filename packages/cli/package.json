@@ -1,6 +1,6 @@
 {
   "name": "cnbook",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "cnbook is a code & text editor",
   "bin": "dist/index.js",
   "publishConfig": {
@@ -17,10 +17,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cnbook/local-client": "^1.0.2"
+    "@cnbook/local-client": "^1.0.3"
   },
   "devDependencies": {
-    "@cnbook/local-api": "^1.0.2",
+    "@cnbook/local-api": "^1.0.3",
     "@types/node": "^20.4.5",
     "commander": "^11.0.0",
     "esbuild": "0.8.25",
