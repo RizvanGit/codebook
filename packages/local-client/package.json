@@ -46,7 +46,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "prepublishOnly": "npm run build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
