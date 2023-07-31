@@ -1,20 +1,29 @@
 {
-  "name": "cli",
+  "name": "cnbook",
   "version": "1.0.0",
-  "description": "",
+  "description": "cnbook is a code & text editor",
+  "bin": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "tsc --watch --preserveWatchOutput",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublishOnly": "esbuild src/index.ts --platform=node --outfile=dist/index.js --bundle --minify --define:process.enc.NODE_ENV='production'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^11.0.0",
-    "local-api": "^1.0.0"
+    "@cnbook/local-client": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.4.5",
-    "typescript": "^5.1.6"
+    "esbuild": "0.8.25",
+    "typescript": "^5.1.6",
+    "@cnbook/local-api": "^1.0.0",
+    "commander": "^11.0.0"
   }
 }

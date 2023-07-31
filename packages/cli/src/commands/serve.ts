@@ -1,7 +1,7 @@
 /* eslint-disable */
 import path from "path";
 import { Command } from "commander";
-import { serve } from "local-api";
+import { serve } from "@cnbook/local-api";
 
 interface ILocalApiError {
   code: string;
