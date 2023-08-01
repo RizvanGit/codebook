@@ -1,6 +1,6 @@
 {
   "name": "cnbook",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "cnbook is a code & text editor",
   "bin": "dist/index.js",
   "publishConfig": {
