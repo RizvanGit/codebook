@@ -13,6 +13,7 @@ import {
   IUpdateCell,
 } from "../actions";
 import { ICell } from "../cell-type";
+import { initOrder, initState } from "./initState";
 
 interface ICellState {
   loading: boolean;
@@ -80,6 +81,11 @@ const cellSlice = createSlice({
         state.loading = false;
         state.error = null;
         if (payload) {
+          if (payload.data.length === 0) {
+            state.data = initState;
+            state.order = initOrder;
+            return;
+          }
           state.order = payload.data.map((cell) => cell.id);
           state.data = payload.data.reduce((acc, cell) => {
             acc[cell.id] = cell;
